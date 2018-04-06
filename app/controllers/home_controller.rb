@@ -32,7 +32,7 @@ class HomeController < ApplicationController
         current_item = {};
         current_item['videoId'] = item['id']['videoId']
         current_item['title'] = item['snippet']['title']
-        current_item['thumbnail'] =item['snippet']['thumbnails']['default']['url']
+        current_item['thumbnail'] =item['snippet']['thumbnails']['medium']['url']
         @top_streams << current_item
       end
     end
