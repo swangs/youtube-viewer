@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>YoutubeViewer</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <nav>
+      <% if current_user %>
+        <%= image_tag current_user.image_url, alt: current_user.name %>
+        <p>Welcome, <%= current_user.first_name %></p>
+        <%= link_to 'Log Out', logout_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Google', '/auth/google_oauth2' %>
+      <% end %>
+    </nav>
+
+    <div>
+      <%= @hash %>
+    </div>
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>">
+        <%= value.to_json %>
+      </div>
+    <% end %>
+
+    <ul>
+      <% @top_streams.each do |stream| %>
+        <li>
+          <a href="<%= 'https://www.youtube.com/watch?v=' + stream['videoId'] %>">
+            <img src="<%= stream['thumbnail'] %>"></img>
+          </a>
+          <p><%= stream['title'] %></p></li>
+      <% end %>
+    </ul>
+
+    </script>
+  </body>
+</html>
