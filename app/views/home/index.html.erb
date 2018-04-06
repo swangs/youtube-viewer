@@ -15,7 +15,7 @@
         <p>Welcome, <%= current_user.first_name %></p>
         <%= link_to 'Log Out', logout_path, method: :delete %>
       <% else %>
-        <%= link_to 'Google', '/auth/google_oauth2' %>
+        <%= link_to 'Log In with Google Or Youtube', '/auth/google_oauth2' %>
       <% end %>
     </nav>
 
@@ -28,15 +28,24 @@
       </div>
     <% end %>
 
-    <ul>
-      <% @top_streams.each do |stream| %>
-        <li>
-          <a href="<%= 'https://www.youtube.com/watch?v=' + stream['videoId'] %>">
-            <img src="<%= stream['thumbnail'] %>"></img>
-          </a>
-          <p><%= stream['title'] %></p></li>
+    <div>
+      <% if current_user %>
+        <h1>Select a Stream</h1>
+        <ul>
+          <% @top_streams.each do |stream| %>
+          <li>
+            <a href="<%= 'https://www.youtube.com/watch?v=' + stream['videoId'] %>">
+              <img src="<%= stream['thumbnail'] %>"></img>
+            </a>
+            <p><%= stream['title'] %></p>
+          </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <h1>Please Log in with Google or Youtube</h1>
       <% end %>
-    </ul>
+    </div>
+
 
     </script>
   </body>
