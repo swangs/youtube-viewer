@@ -37,4 +37,10 @@ class HomeController < ApplicationController
       end
     end
   end
+
+  def show
+    flash[:show_video] = true;
+    flash[:video_id] = params[:video_id]
+    redirect_to root_path
+  end
 end
