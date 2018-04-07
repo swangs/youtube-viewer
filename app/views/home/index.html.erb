@@ -6,31 +6,38 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
   </head>
 
   <body>
-    <nav>
+    <nav class="nav">
       <% if current_user %>
-        <%= image_tag current_user.image_url, alt: current_user.name %>
-        <p>Welcome, <%= current_user.first_name %></p>
-        <%= link_to 'Log Out', logout_path, method: :delete %>
+        <div class="nav-component">
+          <p>Welcome, <%= current_user.first_name %></p>
+        </div>
+        <div class="nav-component">
+          <%= link_to 'Log Out', logout_path, method: :delete %>
+          <%= image_tag current_user.image_url, alt: current_user.name %>
+        </div>
       <% else %>
-        <%= link_to 'Log In with Google Or Youtube', '/auth/google_oauth2' %>
+        <div class="nav-component">
+          <%= link_to 'Log In with Google', '/auth/google_oauth2' %>
+        </div>
       <% end %>
     </nav>
 
-    <% flash.each do |key, value| %>
+    <!-- <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>">
         <%= value.to_json %>
       </div>
-    <% end %>
+    <% end %> -->
 
-    <div>
+    <div class="streams">
       <% if current_user %>
-        <h1>Select a Stream</h1>
-        <ul>
+        <h1>Check out the Top Five Live Streams on Youtube</h1>
+        <ul class="stream-list">
           <% @top_streams.each do |stream| %>
-          <li>
+          <li class="each-stream">
             <a href="<%= stream['videoId'] %>">
               <img src="<%= stream['thumbnail'] %>"></img>
             </a>
@@ -38,14 +45,17 @@
           </li>
           <% end %>
         </ul>
-        <div>
+        <div class="current-stream">
           <% if flash[:show_video] %>
             <iframe width="640" height="360" src="<%= 'https://www.youtube.com/embed/' + flash[:video_id] + '?autoplay=1'%>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           <% end %>
         </div>
       <% else %>
         <div class="log-in">
-          <h1>Please Log in with Google or Youtube</h1>
+          <h1>Welcome to Youtube Viewer</h1>
+          <h1>To view the top streams on YouTube,</h1>
+          <h1>please log in with Google or YouTube</h1>
+          <%= link_to 'Log In', '/auth/google_oauth2' %>
         </div>
       <% end %>
     </div>
