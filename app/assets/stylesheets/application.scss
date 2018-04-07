@@ -22,6 +22,7 @@
  }
 
 .nav {
+  z-index: 9999;
   position: fixed;
   background-color: #FFFFFF;
   height: 50px;
@@ -134,10 +135,18 @@
 .current-stream {
   margin: 20px 0px;
 
-  .title {
+  p {
+    margin: 10px;
     margin-left: calc((20vw - 60px) / 2);
     margin-right: calc(((20vw - 60px) / 2) + (25vw + 20px));
+  }
+
+  .title {
     font-weight: 700;
+  }
+
+  .concurrent-viewers {
+    color: #999999;
   }
 
   .video {
@@ -155,6 +164,10 @@
       margin-left: 20px;
       background: #FFFFFF;
       overflow-y: scroll;
+
+      p {
+        margin: 5px;
+      }
     }
   }
 

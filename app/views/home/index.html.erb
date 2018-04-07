@@ -28,7 +28,7 @@
     </nav>
     <div class="streams">
       <% if current_user %>
-        <h1>Check out the Top Live Streams on YouTube Right now!</h1>
+        <h1>Check out the top live streams on YouTube right now!</h1>
         <div class="top_streams">
           <button onclick="moveLeft()" id="leftButton" class="scrollButton left"><</button>
           <button onclick="moveRight()" id="rightButton" class="scrollButton right">></button>
@@ -45,13 +45,14 @@
         </div>
         <div class="current-stream">
           <% if current_video %>
-          <p class="title">VIDEO NAMELIVE: Wild Discovery Channel Animals | We Caught Giant Snake Anaconda | Animal Documentary BBC 2018TESTING A REALLY LONG NAME</p>
             <div class="video">
               <iframe src="<%= 'https://www.youtube.com/embed/' + flash[:video_id] + '?autoplay=1'%>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
               <div class="messages">
                 <p>message</p>
               </div>
             </div>
+            <p class="title"><%= current_video.title %></p>
+            <p class="concurrent-viewers"><%= current_video.concurrent_viewers %> watching now</p>
           <% end %>
         </div>
       <% else %>

@@ -60,7 +60,7 @@ class HomeController < ApplicationController
       id: params[:video_id]).to_json;
     video_details = JSON.parse(video_details);
 
-    @video = Video.set(video_details);
+    video = Video.set(video_details);
 
     redirect_to root_path
   end
