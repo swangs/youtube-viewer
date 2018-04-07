@@ -35,17 +35,21 @@
 
     <div class="streams">
       <% if current_user %>
-        <h1>Check out the Top Live Streams on YoutTube Right now!</h1>
-        <ul class="stream-list">
-          <% @top_streams.each do |stream| %>
-          <li class="each-stream">
-            <a href="<%= stream['videoId'] %>">
-              <img src="<%= stream['thumbnail'] %>"></img>
-            </a>
-            <p><%= stream['title'] %></p>
-          </li>
-          <% end %>
-        </ul>
+        <h1>Check out the Top Live Streams on YouTube Right now!</h1>
+        <div class="top_streams">
+          <button onclick="moveLeft()" id="leftButton" class="scrollButton left"><</button>
+          <button onclick="moveRight()" id="rightButton" class="scrollButton right">></button>
+          <ul class="stream-list">
+            <% @top_streams.each do |stream| %>
+              <li class="each-stream">
+                <a href="<%= stream['videoId'] %>">
+                  <img src="<%= stream['thumbnail'] %>"></img>
+                </a>
+                <p><%= stream['title'] %></p>
+              </li>
+            <% end %>
+          </ul>
+        </div>
         <div class="current-stream">
           <% if flash[:show_video] %>
           <p class="title">VIDEO NAMELIVE: Wild Discovery Channel Animals | We Caught Giant Snake Anaconda | Animal Documentary BBC 2018TESTING A REALLY LONG NAME</p>
@@ -66,5 +70,14 @@
         </div>
       <% end %>
     </div>
+    <script type="text/javascript">
+    const streamList = document.querySelector(".stream-list");
+    function moveRight() {
+      streamList.scrollLeft += 610;
+    }
+    function moveLeft() {
+      streamList.scrollLeft -= 610;
+    }
+    </script>
   </body>
 </html>

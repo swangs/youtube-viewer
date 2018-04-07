@@ -75,13 +75,49 @@
   }
 }
 
+.top_streams {
+  position: relative;
+
+  .scrollButton {
+    position: absolute;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #00000080;
+    color: #909090;
+    line-height: 1;
+    padding: 30px 10px;
+    margin: 5px 5px;
+    border-radius: 10px;
+    font-size: 30px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #00000099;
+    }
+  }
+
+  .left {
+    top: 50px;
+    left: 10px;
+  }
+
+  .right {
+    top: 50px;
+    right: 10px;
+  }
+}
+
 .stream-list {
   display: flex;
   margin-bottom: 20px;
   overflow-y: hidden;
   overflow-x: overlay;
+  transition: 1s;
+  scroll-behavior: smooth;
 
   .each-stream {
+    position: relative;
     min-width: 300px;
     margin-right: 5px;
 
