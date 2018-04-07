@@ -16,7 +16,9 @@
 
  html {
    background-color: #FAFAFA;
-   overflow-y: scroll;
+   ::-webkit-scrollbar {
+       display: none;
+   }
  }
 
 .nav {
@@ -76,9 +78,11 @@
 .stream-list {
   display: flex;
   margin-bottom: 20px;
+  overflow-y: hidden;
+  overflow-x: overlay;
 
   .each-stream {
-    flex: 1;
+    min-width: 300px;
     margin-right: 5px;
 
     &:last-child {
@@ -95,8 +99,8 @@
   margin: 20px 0px;
 
   .title {
-    margin-left: calc((20vw - 77px) / 2);
-    margin-right: calc(((20vw - 77px) / 2) + (25vw + 20px));
+    margin-left: calc((20vw - 60px) / 2);
+    margin-right: calc(((20vw - 60px) / 2) + (25vw + 20px));
     font-weight: 700;
   }
 

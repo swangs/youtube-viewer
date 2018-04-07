@@ -23,7 +23,7 @@ class HomeController < ApplicationController
       response = service.list_searches(
         'snippet',
         event_type: 'live',
-        max_results: 5,
+        max_results: 25,
         order: 'viewCount',
         type: 'video').to_json;
       response = JSON.parse(response);
