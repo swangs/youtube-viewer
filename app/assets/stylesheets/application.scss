@@ -23,16 +23,14 @@
   position: fixed;
   background-color: #FFFFFF;
   height: 50px;
-  width: 100vw;
+  width: 100%;
   box-shadow: 0px -5px 20px #999999;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: row-reverse;
 
   .nav-component {
-    height: 8vh;
-    width: 200px;
-    margin: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,6 +53,14 @@
         color: #606060;
       }
     }
+  }
+
+  .left {
+    margin-left: 20px;
+  }
+
+  .right {
+    margin-right: 20px;
   }
 }
 
@@ -85,6 +91,35 @@
   }
 }
 
+.current-stream {
+  margin: 20px 0px;
+
+  .title {
+    margin-left: calc((20vw - 77px) / 2);
+    margin-right: calc(((20vw - 77px) / 2) + (25vw + 20px));
+    font-weight: 700;
+  }
+
+  .video {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px;
+
+    iframe {
+      width: 55vw;
+      height: calc(55vw * 360 / 640);
+    }
+
+    .messages {
+      width: calc(25vw);
+      margin-left: 20px;
+      background: #FFFFFF;
+      overflow-y: scroll;
+    }
+  }
+
+}
+
 .log-in {
   padding-top: 15vh;
   display: flex;
@@ -98,10 +133,9 @@
   a {
     font-size: 35px;
     color: #FFFFFF;
-    text-align: center;
     background: #FF0000;
-    padding: 15px;
+    padding: 15px 20px;
     margin: 10px;
-    border-radius: 20px;
+    border-radius: 15px;
   }
 }

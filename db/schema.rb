@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20180406050446) do
     t.string "first_name"
     t.string "last_name"
     t.string "image_url"
-    t.string "url"
     t.string "token"
     t.string "refresh_token"
     t.datetime "created_at", null: false
