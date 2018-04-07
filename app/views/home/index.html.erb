@@ -26,13 +26,6 @@
         </div>
       <% end %>
     </nav>
-
-    <!-- <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %>">
-        <%= value.to_json %>
-      </div>
-    <% end %> -->
-
     <div class="streams">
       <% if current_user %>
         <h1>Check out the Top Live Streams on YouTube Right now!</h1>
@@ -51,7 +44,7 @@
           </ul>
         </div>
         <div class="current-stream">
-          <% if flash[:show_video] %>
+          <% if current_video %>
           <p class="title">VIDEO NAMELIVE: Wild Discovery Channel Animals | We Caught Giant Snake Anaconda | Animal Documentary BBC 2018TESTING A REALLY LONG NAME</p>
             <div class="video">
               <iframe src="<%= 'https://www.youtube.com/embed/' + flash[:video_id] + '?autoplay=1'%>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>

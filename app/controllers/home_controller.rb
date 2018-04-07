@@ -39,8 +39,29 @@ class HomeController < ApplicationController
   end
 
   def show
-    flash[:show_video] = true;
     flash[:video_id] = params[:video_id]
+
+    secrets = Google::APIClient::ClientSecrets.new(
+      {
+        "web" =>
+          {
+            "access_token" => current_user.token,
+            "refresh_token" => current_user.refresh_token,
+            "client_id" => ENV["GOOGLE_CLIENT_ID"],
+            "client_secret" => ENV["GOOGLE_CLIENT_SECRET"]
+          }
+      }
+    )
+    service = Google::Apis::YoutubeV3::YouTubeService.new
+    service.client_options.application_name = 'Youtube Viewer'
+    service.authorization = secrets.to_authorization
+    video_details = service.list_videos(
+      'snippet, liveStreamingDetails',
+      id: params[:video_id]).to_json;
+    video_details = JSON.parse(video_details);
+
+    @video = Video.set(video_details);
+
     redirect_to root_path
   end
 end
