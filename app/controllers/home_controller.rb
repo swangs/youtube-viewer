@@ -55,12 +55,16 @@ class HomeController < ApplicationController
     service = Google::Apis::YoutubeV3::YouTubeService.new
     service.client_options.application_name = 'Youtube Viewer'
     service.authorization = secrets.to_authorization
+
     video_details = service.list_videos(
       'snippet, liveStreamingDetails',
-      id: params[:video_id]).to_json;
-    video_details = JSON.parse(video_details);
+      id: params[:video_id]).to_json
+    video_details = JSON.parse(video_details)
+    video = Video.set(video_details['items'][0])
 
-    video = Video.set(video_details);
+    messages = service.list_live_chat_messages(video.chat_id, 'snippet, authorDetails').to_json
+    messages = JSON.parse(messages)
+    Message.add(messages['items'])
 
     redirect_to root_path
   end

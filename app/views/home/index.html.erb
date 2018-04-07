@@ -48,7 +48,11 @@
             <div class="video">
               <iframe src="<%= 'https://www.youtube.com/embed/' + flash[:video_id] + '?autoplay=1'%>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
               <div class="messages">
-                <p>message</p>
+                <% current_video.messages.reverse.each do |message| %>
+                  <div class="message">
+                    <p class="author"><%= message.author %></p><p class="body"><%= message.body %></p>
+                  </div>
+                <% end %>
               </div>
             </div>
             <p class="title"><%= current_video.title %></p>

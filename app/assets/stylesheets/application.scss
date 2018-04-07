@@ -161,12 +161,27 @@
 
     .messages {
       width: calc(25vw);
+      height: calc(55vw * 360 / 640);
       margin-left: 20px;
       background: #FFFFFF;
       overflow-y: scroll;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column-reverse;
 
-      p {
-        margin: 5px;
+      .message {
+        margin: 10px auto;
+        width: 95%;
+        word-wrap: break-word;
+
+        p {
+          margin: auto;
+          font-size: 75%;
+        }
+
+        .author {
+          color: #999999;
+        }
       }
     }
   }
