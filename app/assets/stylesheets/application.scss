@@ -85,17 +85,17 @@
     z-index: 99;
     border: none;
     outline: none;
-    background-color: #00000080;
-    color: #909090;
-    line-height: 1;
-    padding: 30px 10px;
+    background-color: #00000099;
+    color: #FFFFFF99;
+    padding: 10px 10px 15px 10px;
     margin: 5px 5px;
     border-radius: 10px;
     font-size: 30px;
     cursor: pointer;
 
     &:hover {
-      background-color: #00000099;
+      background-color: #FFFFFF99;
+      color: #00000099;
     }
   }
 
