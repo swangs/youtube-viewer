@@ -15,16 +15,11 @@ class MessagesController < ApplicationController
     service.client_options.application_name = 'Youtube Viewer'
     service.authorization = secrets.to_authorization
 
-    if params[:nextPageToken] != "none"
-      messages = service.list_live_chat_messages(
-        params[:chat_id],
-        'snippet, authorDetails',
-        page_token: params[:nextPageToken]).to_json
-    else
-      messages = service.list_live_chat_messages(
-        params[:chat_id],
-        'snippet, authorDetails').to_json
-    end
+
+    messages = service.list_live_chat_messages(
+      params[:chat_id],
+      'snippet, authorDetails',
+      page_token: params[:nextPageToken]).to_json
 
     messages = JSON.parse(messages)
     Message.add(messages['items'])

@@ -138,15 +138,15 @@
 
   .title {
     margin: 10px;
-    margin-left: calc((20vw - 77px) / 2);
-    margin-right: calc(((20vw - 77px) / 2) + (25vw + 20px));
+    margin-left: calc((10vw - 77px) / 2);
+    margin-right: calc(((10vw - 77px) / 2) + (30vw + 20px));
     font-weight: 700;
   }
 
   .stream-details {
     margin: 10px;
-    margin-left: calc((20vw - 77px) / 2);
-    margin-right: calc(((20vw - 77px) / 2) + (25vw + 20px));
+    margin-left: calc((10vw - 77px) / 2);
+    margin-right: calc(((10vw - 77px) / 2) + (30vw + 20px));
     color: #999999;
     display: flex;
     justify-content: space-between;
@@ -158,13 +158,13 @@
     margin: 20px 0px;
 
     iframe {
-      width: 55vw;
-      height: calc(55vw * 360 / 640);
+      width: 60vw;
+      height: calc(60vw * 360 / 640);
     }
 
     .messages {
-      width: calc(25vw);
-      height: calc(55vw * 360 / 640);
+      width: calc(30vw);
+      height: calc(60vw * 360 / 640);
       margin-left: 20px;
       background: #FFFFFF;
       overflow-y: scroll;
