@@ -14,20 +14,20 @@
   <body>
     <nav class="nav">
       <% if current_user %>
-        <div class="nav-component right">
-          <%= link_to 'Log Out', logout_path, method: :delete %>
-          <%= image_tag current_user.image_url, alt: current_user.name %>
-        </div>
         <div class="nav-component left">
           <a href="/"><img src="https://i.imgur.com/YEX4EsL.png"></a>
           <p>Welcome, <%= current_user.first_name %></p>
         </div>
-      <% else %>
         <div class="nav-component right">
-          <%= link_to 'Log In with Google', '/auth/google_oauth2' %>
+          <%= link_to 'Log Out', logout_path, method: :delete %>
+          <%= image_tag current_user.image_url, alt: current_user.name %>
         </div>
+      <% else %>
         <div class="nav-component left">
           <a href="/"><img src="https://i.imgur.com/YEX4EsL.png"></a>
+        </div>
+        <div class="nav-component right">
+          <%= link_to 'Log In with Google', '/auth/google_oauth2' %>
         </div>
       <% end %>
     </nav>
