@@ -173,26 +173,31 @@
       flex-direction: column-reverse;
       border: 1px solid #99999950;
 
-      .message {
-        margin: 10px auto;
-        width: 95%;
-        word-wrap: break-word;
-        font-size: 14px;
+      .message-box {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 20px 0px;
 
         .chat-img {
-          width: 20px;
+          width: 30px;
           border-radius: 50px;
-          margin: 0px 5px;
+          margin: 0px 10px;
         }
 
-        .author {
-          color: #999999;
-          margin-right: 5px;
+        .message {
+          margin: 10px 0px;
+          word-wrap: break-word;
+          font-size: 14px;
+
+          .author {
+            color: #999999;
+            margin-right: 5px;
+          }
         }
       }
     }
   }
-
 }
 
 .log-in {

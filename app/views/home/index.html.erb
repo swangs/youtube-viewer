@@ -82,7 +82,7 @@
         let timeout = chatRate;
         response.items.forEach((item) => {
           setTimeout(function() {
-            messages.innerHTML = `<p class="message"><img class="chat-img" src="${item.authorDetails.profileImageUrl}" alt=""><span class="author">${item.authorDetails.displayName}</span>${item.snippet.displayMessage}</p>` + messages.innerHTML;
+            messages.innerHTML = `<div class="message-box"><img class="chat-img" src="${item.authorDetails.profileImageUrl}" alt=""><p class="message"><span class="author">${item.authorDetails.displayName}</span>${item.snippet.displayMessage}</p></div>` + messages.innerHTML;
           }, timeout)
           timeout += chatRate;
         })
