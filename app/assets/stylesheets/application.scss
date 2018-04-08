@@ -178,8 +178,15 @@
         word-wrap: break-word;
         font-size: 14px;
 
+        .chat-img {
+          width: 20px;
+          border-radius: 50px;
+          margin: 0px 5px;
+        }
+
         .author {
           color: #999999;
+          margin-right: 5px;
         }
       }
     }

@@ -67,6 +67,7 @@
         </div>
       <% end %>
     </div>
+    <img src="${item.authorDetails.profileImageUrl}" alt="">
     <script type="text/javascript">
 
     const messages = document.querySelector(".messages");
@@ -81,7 +82,7 @@
         let timeout = chatRate;
         response.items.forEach((item) => {
           setTimeout(function() {
-            messages.innerHTML = `<p class="message"><span class="author">${item.authorDetails.displayName}</span> ${item.snippet.displayMessage}</p>` + messages.innerHTML;
+            messages.innerHTML = `<p class="message"><img class="chat-img" src="${item.authorDetails.profileImageUrl}" alt=""><span class="author">${item.authorDetails.displayName}</span>${item.snippet.displayMessage}</p>` + messages.innerHTML;
           }, timeout)
           timeout += chatRate;
         })
