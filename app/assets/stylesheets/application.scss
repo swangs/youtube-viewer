@@ -174,11 +174,11 @@
       border: 1px solid #99999950;
 
       .message-box {
-        display: inline-flex;
-        min-height: 50px;
+        display: flex;
+        min-height: 30px;
         align-items: center;
         justify-content: flex-start;
-        margin: 0px 10px;
+        padding: 10px;
 
         .chat-img {
           width: 30px;
