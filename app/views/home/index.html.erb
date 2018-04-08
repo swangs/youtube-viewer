@@ -68,21 +68,28 @@
 
     const messages = document.querySelector(".messages");
 
-    function updateMessages(chat_id, pollingInterval = 100, nextPageToken = "none") {
-      setTimeout(function() {
-        $.ajax({
-          url: `/messages/${chat_id}`,
-          method: "GET",
-          data: { nextPageToken }
-        }).then(response => {
-          response.items.forEach((item) => {
-            setTimeout(function() {
-              messages.innerHTML = `<p class="message"><span class="author">${item.authorDetails.displayName}</span> ${item.snippet.displayMessage}</p>` + messages.innerHTML;
-            }, 1000);
-          })
-          updateMessages(chat_id, response.pollingIntervalMillis, response.nextPageToken)
-        });
-      }, pollingInterval);
+    function updateMessages(chat_id, nextPageToken = "none", first = true) {
+      $.ajax({
+        url: `/messages/${chat_id}`,
+        method: "GET",
+        data: { nextPageToken }
+      }).then(response => {
+        const chatRate = first ? 0 : Math.ceil(response.pollingIntervalMillis / (response.items.length + 1))
+        let timeout = chatRate;
+        response.items.forEach((item) => {
+          setTimeout(function() {
+            messages.innerHTML = `<p class="message"><span class="author">${item.authorDetails.displayName}</span> ${item.snippet.displayMessage}</p>` + messages.innerHTML;
+          }, timeout)
+          timeout += chatRate;
+        })
+
+        setTimeout(function() {
+          updateMessages(chat_id, response.nextPageToken, false)
+        }, response.pollingIntervalMillis)
+
+        console.log(Math.floor(response.pollingIntervalMillis / (response.items.length + 1)));
+
+      });
     }
 
     <% if current_video %>
