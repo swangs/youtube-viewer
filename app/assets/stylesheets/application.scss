@@ -175,20 +175,21 @@
 
       .message-box {
         display: flex;
-        min-height: 30px;
+        flex-shrink: 0;
         align-items: center;
         justify-content: flex-start;
-        padding: 10px;
+        margin: 10px;
 
         .chat-img {
-          width: 30px;
+          width: 40px;
           border-radius: 50px;
           margin-right: 10px;
         }
 
         .message {
-          word-wrap: break-word;
+          max-width: calc(100% - 50px);
           font-size: 14px;
+          word-wrap: break-word;
 
           .author {
             color: #999999;
