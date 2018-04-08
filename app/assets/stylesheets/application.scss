@@ -174,25 +174,25 @@
       border: 1px solid #99999950;
 
       .message-box {
-        display: flex;
+        display: inline-flex;
+        min-height: 50px;
         align-items: center;
         justify-content: flex-start;
-        margin: 20px 0px;
+        margin: 0px 10px;
 
         .chat-img {
           width: 30px;
           border-radius: 50px;
-          margin: 0px 10px;
+          margin-right: 10px;
         }
 
         .message {
-          margin: 10px 0px;
           word-wrap: break-word;
           font-size: 14px;
 
           .author {
             color: #999999;
-            margin-right: 5px;
+            margin-right: 10px;
           }
         }
       }
