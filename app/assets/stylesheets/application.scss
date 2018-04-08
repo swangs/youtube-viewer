@@ -16,9 +16,7 @@
 
  html {
    background-color: #FAFAFA;
-   ::-webkit-scrollbar {
-       display: none;
-   }
+   overflow-y: scroll;
  }
 
 .nav {
@@ -78,6 +76,9 @@
 
 .top_streams {
   position: relative;
+  ::-webkit-scrollbar {
+      display: none;
+  }
 
   .scrollButton {
     position: absolute;
@@ -137,8 +138,8 @@
 
   p {
     margin: 10px;
-    margin-left: calc((20vw - 60px) / 2);
-    margin-right: calc(((20vw - 60px) / 2) + (25vw + 20px));
+    margin-left: calc((20vw - 77px) / 2);
+    margin-right: calc(((20vw - 77px) / 2) + (25vw + 20px));
   }
 
   .title {
@@ -173,11 +174,7 @@
         margin: 10px auto;
         width: 95%;
         word-wrap: break-word;
-
-        p {
-          margin: auto;
-          font-size: 75%;
-        }
+        font-size: 14px;
 
         .author {
           color: #999999;

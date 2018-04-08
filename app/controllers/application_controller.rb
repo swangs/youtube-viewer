@@ -10,8 +10,4 @@ class ApplicationController < ActionController::Base
   def current_video
     @current_video ||= Video.find_by(video_id: flash[:video_id])
   end
-
-  def messages
-    
-  end
 end

@@ -62,10 +62,6 @@ class HomeController < ApplicationController
     video_details = JSON.parse(video_details)
     video = Video.set(video_details['items'][0])
 
-    messages = service.list_live_chat_messages(video.chat_id, 'snippet, authorDetails').to_json
-    messages = JSON.parse(messages)
-    Message.add(messages['items'])
-
     redirect_to root_path
   end
 end

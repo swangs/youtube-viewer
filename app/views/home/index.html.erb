@@ -7,6 +7,7 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= favicon_link_tag asset_path('logo-youtube.png'), :rel => 'icon', :type =>  'image/png' %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
   </head>
 
@@ -30,8 +31,8 @@
       <% if current_user %>
         <h1>Check out the top live streams on YouTube right now!</h1>
         <div class="top_streams">
-          <button onclick="moveLeft()" id="leftButton" class="scrollButton left"><</button>
-          <button onclick="moveRight()" id="rightButton" class="scrollButton right">></button>
+          <button onmousedown="moveLeft()" id="leftButton" class="scrollButton left"><</button>
+          <button onmousedown="moveRight()" id="rightButton" class="scrollButton right">></button>
           <ul class="stream-list">
             <% @top_streams.each do |stream| %>
               <li class="each-stream">
@@ -48,11 +49,6 @@
             <div class="video">
               <iframe src="<%= 'https://www.youtube.com/embed/' + flash[:video_id] + '?autoplay=1'%>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
               <div class="messages">
-                <% current_video.messages.reverse.each do |message| %>
-                  <div class="message">
-                    <p class="author"><%= message.author %></p><p class="body"><%= message.body %></p>
-                  </div>
-                <% end %>
               </div>
             </div>
             <p class="title"><%= current_video.title %></p>
@@ -69,7 +65,35 @@
       <% end %>
     </div>
     <script type="text/javascript">
+
+    const messages = document.querySelector(".messages");
+
+    function updateMessages(chat_id, pollingInterval = 100, nextPageToken = "none") {
+      setTimeout(function() {
+        $.ajax({
+          url: `/messages/${chat_id}`,
+          method: "GET",
+          data: { nextPageToken }
+        }).then(response => {
+          response.items.forEach((item) => {
+            setTimeout(function() {
+              messages.innerHTML = `<p class="message"><span class="author">${item.authorDetails.displayName}</span> ${item.snippet.displayMessage}</p>` + messages.innerHTML;
+            }, 1000);
+          })
+          updateMessages(chat_id, response.pollingIntervalMillis, response.nextPageToken)
+        });
+      }, pollingInterval);
+    }
+
+    <% if current_video %>
+      const chat_id = '<%= current_video.chat_id %>'
+      document.addEventListener("DOMContentLoaded", function(event) {
+        updateMessages(chat_id);
+      });
+    <% end %>
+
     const streamList = document.querySelector(".stream-list");
+
     function moveRight() {
       streamList.scrollLeft += 610;
     }
