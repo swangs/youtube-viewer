@@ -94,9 +94,9 @@
           timeout += chatRate;
         })
 
-        // setTimeout(function() {
-        //   updateMessages(chat_id, response.nextPageToken, false)
-        // }, response.pollingIntervalMillis)
+        setTimeout(function() {
+          updateMessages(chat_id, response.nextPageToken, false)
+        }, response.pollingIntervalMillis)
 
         const chatsPerSecond = first ? 0 : (response.items.length / response.pollingIntervalMillis * 1000).toFixed(1)
         document.querySelector('.chats-per-second').innerHTML = ` ${chatsPerSecond} chats per second`
