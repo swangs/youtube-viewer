@@ -68,11 +68,14 @@
 .streams {
   padding-top: 50px;
   margin: 0px 20px;
-  border-bottom: 1px solid #999999;
 
   h1 {
     padding: 20px 0px;;
   }
+}
+
+.divider {
+  border-bottom: 1px solid #999999;
 }
 
 .top_streams {
@@ -80,7 +83,6 @@
   ::-webkit-scrollbar {
       display: none;
   }
-  border-bottom: 1px solid #999999;
 
   .scrollButton {
     position: absolute;
@@ -146,9 +148,10 @@
   }
 
   .stream-details {
-    margin: 10px;
+    margin-top: 10px;
     margin-left: calc((10vw - 77px) / 2);
     margin-right: calc(((10vw - 77px) / 2) + (30vw + 20px));
+    margin-bottom: 20px;
     color: #999999;
     display: flex;
     justify-content: space-between;
