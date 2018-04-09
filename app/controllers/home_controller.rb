@@ -1,3 +1,6 @@
+require 'google/apis/youtube_v3'
+require 'google/api_client/client_secrets'
+
 class HomeController < ApplicationController
   layout false
 
