@@ -63,25 +63,33 @@
           <% if current_video %>
             <div class="video">
               <iframe src="<%= 'https://www.youtube.com/embed/' + current_video.video_id + '?autoplay=1'%>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-              <button class="toggle-search" onclick="toggleSearch()" type="button">
-                <i class="fas fa-search"></i> Search by User
-              </button>
-              <div class="user-search">
-                <div class="search-results">
+              <div class="chat-box">
+                <div class="user-search">
+                  <div class="search-results">
+                  </div>
+                  <button class="close-search" type="button"onclick="toggleSearch()">X</button>
+                  <div class="search-input">
+                    <input id="searchQuery" class="search-query" onkeydown="submit(event)" type="text" value="">
+                    <button id="searchButton" class="search-submit" onclick="search()" type="submit">Search</button>
+                  </div>
                 </div>
-                <button class="close-search" type="button"onclick="toggleSearch()">X</button>
-                <div class="search-input">
-                  <input id="searchQuery" class="search-query" onkeydown="submit(event)" type="text" value="">
-                  <button id="searchButton" class="search-button" onclick="search()" type="submit">Search</button>
+                <div class="messages">
                 </div>
-              </div>
-              <div class="messages">
               </div>
             </div>
-            <p class="title"><%= current_video.title %></p>
-            <div class="stream-details">
-              <p class="concurrent-viewers"><%= current_video.concurrent_viewers %> watching now</p>
-              <p class="chats-per-second"></p>
+            <div class="below-stream">
+              <div class="stream-information">
+                <p class="title"><%= current_video.title %></p>
+                <div class="stream-details">
+                  <p class="concurrent-viewers"><%= current_video.concurrent_viewers %> watching now</p>
+                  <p class="chats-per-second"></p>
+                </div>
+              </div>
+              <div class="search-button">
+                <button class="toggle-search" onclick="toggleSearch()" type="button">
+                  <i class="fas fa-search"></i> Search by User
+                </button>
+              </div>
             </div>
             <div class="divider"></div>
           <% end %>
@@ -151,6 +159,7 @@
       query.value = "";
       searchResults.innerHTML = "";
       searchWindow.classList.toggle("show");
+      query.focus();
     }
 
     function search() {

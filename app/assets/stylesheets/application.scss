@@ -142,23 +142,6 @@
 .current-stream {
   margin: 20px 0px;
 
-  .title {
-    margin: 10px;
-    margin-left: calc((10vw - 77px) / 2);
-    margin-right: calc(((10vw - 77px) / 2) + (30vw + 20px));
-    font-weight: 700;
-  }
-
-  .stream-details {
-    margin-top: 10px;
-    margin-left: calc((10vw - 77px) / 2);
-    margin-right: calc(((10vw - 77px) / 2) + (30vw + 20px));
-    margin-bottom: 20px;
-    color: #999999;
-    display: flex;
-    justify-content: space-between;
-  }
-
   .video {
     display: flex;
     justify-content: center;
@@ -167,12 +150,12 @@
     iframe {
       width: 60vw;
       height: calc(60vw * 360 / 640);
+      margin-right: 20px;
     }
 
     .messages {
       width: 30vw;
       height: calc(60vw * 360 / 640);
-      margin-left: 20px;
       background: #FFFFFF;
       overflow-y: scroll;
       overflow-x: hidden;
@@ -182,6 +165,42 @@
     }
   }
 }
+
+.below-stream {
+  margin: 20px 0px;
+  display: flex;
+  justify-content: center;
+
+
+  .stream-information {
+    width: 60vw;
+    margin-right: 20px;
+
+    .title {
+      font-weight: 700;
+    }
+
+    .stream-details {
+      margin-top: 10px;
+      color: #999999;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .search-button {
+    width: 30vw;
+
+    .toggle-search {
+      float: right;
+      width: 125px;
+      height: 30px;
+      border-radius: 0;
+      background-color: transparent;
+    }
+  }
+}
+
 
 .message-box {
   display: flex;
@@ -228,16 +247,6 @@
   }
 }
 
-.toggle-search {
-  width: 125px;
-  height: 30px;
-  position: absolute;
-  right: calc(5vw - 17px);
-  margin-top: calc(60vw * 360 / 640 + 10px);
-  border-radius: 0;
-  background-color: transparent;
-}
-
 .close-search {
   position: absolute;
   top: 10px;
@@ -252,9 +261,8 @@
   z-index: -1;
   width: 30vw;
   height: calc(60vw * 360 / 640);
-  margin-top: 1px;
   position: absolute;
-  right: calc(5vw - 17px);
+  border: 1px solid #99999950;
   background-color: #FFFFFF;
   transition: .5s linear;
 
@@ -275,7 +283,7 @@
       padding: 0px 5px;
     }
 
-    .search-button {
+    .search-submit {
       width: 20%;
       background-color: transparent;
     }
