@@ -69,6 +69,7 @@
               <div class="user-search">
                 <div class="search-results">
                 </div>
+                <button class="close-search" type="button"onclick="toggleSearch()">X</button>
                 <div class="search-input">
                   <input id="searchQuery" class="search-query" onkeydown="submit(event)" type="text" value="">
                   <button id="searchButton" class="search-button" onclick="search()" type="submit">Search</button>
@@ -168,7 +169,6 @@
           });
         },
         error => {
-          console.log(error);
           searchResults.innerHTML = `
           <div class="message-box">
             <p style="color:red">${error.responseJSON}</p>

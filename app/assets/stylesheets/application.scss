@@ -233,6 +233,15 @@
   background-color: transparent;
 }
 
+.close-search {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  border: none;
+  background-color: transparent;
+  color: #999999;
+}
+
 .user-search {
   opacity: 0;
   z-index: -1;
