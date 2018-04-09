@@ -137,6 +137,11 @@
     // search functions
     function toggleSearch() {
       const searchWindow = document.querySelector(".user-search")
+      const query = document.getElementById("searchQuery");
+      const searchResults = document.querySelector(".search-results");
+
+      query.value = "";
+      searchResults.innerHTML = "";
       searchWindow.classList.toggle("show");
     }
 
@@ -147,6 +152,7 @@
         const video_id = `<%= current_video.video_id %>`
       <% end %>
 
+      searchResults.innerHTML = "";
       $.ajax({
         url: `/messages/search/${query.value.toLowerCase().replace(/\s+/g, '')}`,
         method: "GET",
