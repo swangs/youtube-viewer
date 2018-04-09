@@ -45,8 +45,8 @@
       <% if current_user %>
         <h1>Check out the top live streams on YouTube right now!</h1>
         <div class="top-streams">
-          <button onmousedown="moveLeft()" id="leftButton" class="scrollButton left"><</button>
-          <button onmousedown="moveRight()" id="rightButton" class="scrollButton right">></button>
+          <button onmousedown="moveLeft()" id="leftButton" class="scrollButton left"><i class="fas fa-arrow-left"></i></button>
+          <button onmousedown="moveRight()" id="rightButton" class="scrollButton right"><i class="fas fa-arrow-right"></i></button>
           <ul class="stream-list">
             <% @top_streams.each do |stream| %>
               <li class="each-stream">
