@@ -28,8 +28,12 @@ class MessagesController < ApplicationController
   end
 
   def search
-    stream = Video.find_by(video_id: params[:video_id])
-    searchResults = stream.messages.where("REPLACE(LOWER(author), ' ', '') LIKE ?", "%#{params[:query]}%")
-    render json: searchResults, status: 200
+    if params[:query].length < 3
+      render json: ["Please search with at least 3 characters"], status: 400
+    else
+      stream = Video.find_by(video_id: params[:video_id])
+      searchResults = stream.messages.where("REPLACE(LOWER(author), ' ', '') LIKE ?", "%#{params[:query]}%")
+      render json: searchResults, status: 200
+    end
   end
 end

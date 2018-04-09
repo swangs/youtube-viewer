@@ -157,15 +157,23 @@
         url: `/messages/search/${query.value.toLowerCase().replace(/\s+/g, '')}`,
         method: "GET",
         data: { video_id }
-      }).then(response => {
-        response.forEach((item) => {
+      }).then(
+        response => {
+          response.forEach((item) => {
+            searchResults.innerHTML = `
+            <div class="message-box">
+              <img class="chat-img" src="${item.author_image}"></img>
+              <p class="message"><span class="author">${item.author}</span>${item.body}</p>
+            </div>` + searchResults.innerHTML;
+          });
+        },
+        error => {
+          console.log(error);
           searchResults.innerHTML = `
           <div class="message-box">
-            <img class="chat-img" src="${item.author_image}"></img>
-            <p class="message"><span class="author">${item.author}</span>${item.body}</p>
-          </div>` + searchResults.innerHTML;
+            <p style="color:red">${error.responseJSON}</p>
+          </div>`;
         });
-      });
       query.value = "";
     }
 
