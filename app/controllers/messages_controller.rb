@@ -33,7 +33,12 @@ class MessagesController < ApplicationController
     else
       stream = Video.find_by(video_id: params[:video_id])
       searchResults = stream.messages.where("REPLACE(LOWER(author), ' ', '') LIKE ?", "%#{params[:query]}%")
-      render json: searchResults, status: 200
+
+      if searchResults.length > 1
+        render json: searchResults, status: 200
+      else
+        render json: ["No matches found"], status: 404
+      end
     end
   end
 end
