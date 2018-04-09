@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'omniauth-google-oauth2'
 gem 'google-api-client'
+gem 'newrelic_rpm'
 
 
 group :development, :test do
