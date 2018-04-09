@@ -248,6 +248,8 @@
     height: calc(60vw * 360 / 640 - 30px);
     overflow-y: scroll;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column-reverse;
   }
 
   .search-input {
