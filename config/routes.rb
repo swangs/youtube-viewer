@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get '/messages/:chat_id', to: 'messages#index'
   get '/messages/search/:query', to: 'messages#search'
   delete '/logout', to: 'sessions#destroy'
+  match '*path' => redirect('/'), via: :get
 end

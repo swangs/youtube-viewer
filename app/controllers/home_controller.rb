@@ -1,26 +1,27 @@
-require 'google/apis/youtube_v3'
-require 'google/api_client/client_secrets'
-
 class HomeController < ApplicationController
   layout false
 
+  def new_service
+    secrets = Google::APIClient::ClientSecrets.new(
+      {
+        "web" =>
+          {
+            "access_token" => current_user.token,
+            "refresh_token" => current_user.refresh_token,
+            "client_id" => ENV["GOOGLE_CLIENT_ID"],
+            "client_secret" => ENV["GOOGLE_CLIENT_SECRET"]
+          }
+      }
+    )
+    service = Google::Apis::YoutubeV3::YouTubeService.new
+    service.client_options.application_name = 'Youtube Viewer'
+    service.authorization = secrets.to_authorization
+    service
+  end
+
   def index
     if current_user
-      secrets = Google::APIClient::ClientSecrets.new(
-        {
-          "web" =>
-            {
-              "access_token" => current_user.token,
-              "refresh_token" => current_user.refresh_token,
-              "client_id" => ENV["GOOGLE_CLIENT_ID"],
-              "client_secret" => ENV["GOOGLE_CLIENT_SECRET"]
-            }
-        }
-      )
-      service = Google::Apis::YoutubeV3::YouTubeService.new
-      service.client_options.application_name = 'Youtube Viewer'
-      service.authorization = secrets.to_authorization
-      response = service.list_searches(
+      response = new_service.list_searches(
         'snippet',
         event_type: 'live',
         max_results: 25,
@@ -41,22 +42,7 @@ class HomeController < ApplicationController
   def show
     flash[:video_id] = params[:video_id]
 
-    secrets = Google::APIClient::ClientSecrets.new(
-      {
-        "web" =>
-          {
-            "access_token" => current_user.token,
-            "refresh_token" => current_user.refresh_token,
-            "client_id" => ENV["GOOGLE_CLIENT_ID"],
-            "client_secret" => ENV["GOOGLE_CLIENT_SECRET"]
-          }
-      }
-    )
-    service = Google::Apis::YoutubeV3::YouTubeService.new
-    service.client_options.application_name = 'Youtube Viewer'
-    service.authorization = secrets.to_authorization
-
-    video_details = service.list_videos(
+    video_details = new_service.list_videos(
       'snippet, liveStreamingDetails',
       id: params[:video_id]).to_json
     video_details = JSON.parse(video_details)

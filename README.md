@@ -1,24 +1,7 @@
-# README
+[YouTube Viewer](https://swang-youtube.herokuapp.com/) allows users to sign in with their Google account and view top streams on YouTube along with live chat updated in real time.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Built entirely with Ruby on Rails, this app utilizes API from Google to fetch all required data.
 
-Things you may want to cover:
+![YoutubeViewer](https://i.imgur.com/aKA36I4.gif)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Also features chat filtering by username and chats per second counter.

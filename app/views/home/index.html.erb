@@ -62,7 +62,7 @@
         <div class="current-stream">
           <% if current_video %>
             <div class="video">
-              <iframe src="<%= 'https://www.youtube.com/embed/' + flash[:video_id] + '?autoplay=1'%>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              <iframe src="<%= 'https://www.youtube.com/embed/' + current_video.video_id + '?autoplay=1'%>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
               <button class="toggle-search" onclick="toggleSearch()" type="button">
                 <i class="fas fa-search"></i> Search by User
               </button>
@@ -97,7 +97,6 @@
     </div>
 
     <script type="text/javascript">
-
     // ajax request and intervals to refresh chat
     function updateMessages(chat_id, nextPageToken = "none", first = true) {
       const messages = document.querySelector(".messages");
@@ -121,10 +120,18 @@
 
         setTimeout(function() {
           updateMessages(chat_id, response.nextPageToken, false)
-        }, response.pollingIntervalMillis)
+        }, response.pollingIntervalMillis);
 
-        const chatsPerSecond = first ? 0 : (response.items.length / response.pollingIntervalMillis * 1000).toFixed(1)
-        document.querySelector('.chats-per-second').innerHTML = ` ${chatsPerSecond} chats per second`
+        const chatsPerSecond = first ? "0.0" : (response.items.length / response.pollingIntervalMillis * 1000).toFixed(1);
+        const chatsPerSecondElement = document.querySelector('.chats-per-second');
+        chatsPerSecondElement.innerHTML = ` ${chatsPerSecond} chats per second`
+        if (chatsPerSecond > 3) {
+          chatsPerSecondElement.style.color = "#FF0000"
+        } else if (chatsPerSecond > 1) {
+          chatsPerSecondElement.style.color = "#E1E100"
+        } else {
+          chatsPerSecondElement.style.color = "#999999"
+        }
       });
     }
 
