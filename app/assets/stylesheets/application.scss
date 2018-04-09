@@ -167,7 +167,7 @@
     }
 
     .messages {
-      width: calc(30vw);
+      width: 30vw;
       height: calc(60vw * 360 / 640);
       margin-left: 20px;
       background: #FFFFFF;
@@ -223,4 +223,29 @@
     margin: 10px;
     border-radius: 15px;
   }
+}
+
+.search-button {
+  width: 150px;
+  height: 30px;
+  position: absolute;
+  right: calc(5vw - 17px);
+  margin-top: 35px;
+  border-radius: 0;
+  background-color: transparent;
+  outline: none;
+}
+
+.user-search {
+  z-index: 50;
+  opacity: 0;
+  width: 30vw;
+  height: calc(60vw * 360 / 640);
+  position: absolute;
+  background-color: #FFFFFF;
+  transition: opacity .5s linear;
+}
+
+.show {
+  opacity: 1;
 }

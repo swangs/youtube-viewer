@@ -17,6 +17,7 @@
       gtag('config', 'UA-114133598-1');
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
   </head>
 
@@ -63,6 +64,11 @@
             <div class="video">
               <iframe src="<%= 'https://www.youtube.com/embed/' + flash[:video_id] + '?autoplay=1'%>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
               <div class="messages">
+                <button onclick="toggleSearch()" type="button" class="search-button">
+                  <i class="fas fa-search"></i> Search by User
+                </button>
+                <div class="user-search">
+                </div>
               </div>
             </div>
             <p class="title"><%= current_video.title %></p>
@@ -84,10 +90,10 @@
     </div>
     <img src="${item.authorDetails.profileImageUrl}" alt="">
     <script type="text/javascript">
-
-    const messages = document.querySelector(".messages");
+    // ajax request and intervals to refresh chat
 
     function updateMessages(chat_id, nextPageToken = "none", first = true) {
+      const messages = document.querySelector(".messages");
       $.ajax({
         url: `/messages/${chat_id}`,
         method: "GET",
@@ -122,12 +128,22 @@
       });
     <% end %>
 
-    const streamList = document.querySelector(".stream-list");
+    // search functions
+    function toggleSearch() {
+      const searchWindow = document.querySelector(".user-search")
+      searchWindow.classList.toggle("show");
+      console.log("testing");
+
+    }
+
+    // top streams scrolling buttons
 
     function moveRight() {
+      const streamList = document.querySelector(".stream-list");
       streamList.scrollLeft += 610;
     }
     function moveLeft() {
+      const streamList = document.querySelector(".stream-list");
       streamList.scrollLeft -= 610;
     }
     </script>
