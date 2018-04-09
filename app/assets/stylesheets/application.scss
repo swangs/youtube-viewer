@@ -14,11 +14,46 @@
  *= require_self
  */
 
+// Background, splash, UI
  html {
    background-color: #FAFAFA;
    overflow-y: scroll;
  }
 
+ .streams {
+   padding-top: 50px;
+   margin: 0px 20px;
+
+   h1 {
+     padding: 20px 0px;;
+   }
+ }
+
+ .log-in {
+   padding-top: 15vh;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+
+   h1 {
+     font-size: 35px;
+   }
+
+   a {
+     font-size: 35px;
+     color: #FFFFFF;
+     background: #FF0000;
+     padding: 15px 20px;
+     margin: 10px;
+     border-radius: 15px;
+   }
+ }
+
+ .divider {
+   border-bottom: 1px solid #999999;
+ }
+
+ // Navbar
 .nav {
   z-index: 9999;
   position: fixed;
@@ -64,19 +99,7 @@
   }
 }
 
-.streams {
-  padding-top: 50px;
-  margin: 0px 20px;
-
-  h1 {
-    padding: 20px 0px;;
-  }
-}
-
-.divider {
-  border-bottom: 1px solid #999999;
-}
-
+// Top Streams Menu
 .top-streams {
   position: relative;
   ::-webkit-scrollbar {
@@ -139,6 +162,7 @@
   }
 }
 
+// Current Video and Chat
 .current-stream {
   margin: 20px 0px;
 
@@ -162,6 +186,31 @@
       display: flex;
       flex-direction: column-reverse;
       border: 1px solid #99999950;
+    }
+  }
+}
+
+.message-box {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 10px;
+
+  .chat-img {
+    width: 40px;
+    border-radius: 50px;
+    margin-right: 10px;
+  }
+
+  .message {
+    max-width: calc(100% - 50px);
+    font-size: 14px;
+    word-wrap: break-word;
+
+    .author {
+      color: #999999;
+      margin-right: 10px;
     }
   }
 }
@@ -201,61 +250,7 @@
   }
 }
 
-
-.message-box {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: flex-start;
-  margin: 10px;
-
-  .chat-img {
-    width: 40px;
-    border-radius: 50px;
-    margin-right: 10px;
-  }
-
-  .message {
-    max-width: calc(100% - 50px);
-    font-size: 14px;
-    word-wrap: break-word;
-
-    .author {
-      color: #999999;
-      margin-right: 10px;
-    }
-  }
-}
-
-.log-in {
-  padding-top: 15vh;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
-  h1 {
-    font-size: 35px;
-  }
-
-  a {
-    font-size: 35px;
-    color: #FFFFFF;
-    background: #FF0000;
-    padding: 15px 20px;
-    margin: 10px;
-    border-radius: 15px;
-  }
-}
-
-.close-search {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  border: none;
-  background-color: transparent;
-  color: #999999;
-}
-
+// Search Menu
 .user-search {
   opacity: 0;
   z-index: -1;
@@ -265,6 +260,15 @@
   border: 1px solid #99999950;
   background-color: #FFFFFF;
   transition: .5s linear;
+
+  .close-search {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    border: none;
+    background-color: transparent;
+    color: #999999;
+  }
 
   .search-results {
     height: calc(60vw * 360 / 640 - 30px);
