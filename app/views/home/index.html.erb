@@ -105,6 +105,7 @@
     </div>
 
     <script type="text/javascript">
+
     // ajax request and intervals to refresh chat
     function updateMessages(chat_id, nextPageToken = "none", first = true) {
       const messages = document.querySelector(".messages");
@@ -203,7 +204,6 @@
     }
 
     // top streams scrolling buttons
-
     function moveRight() {
       const streamList = document.querySelector(".stream-list");
       streamList.scrollLeft += 610;

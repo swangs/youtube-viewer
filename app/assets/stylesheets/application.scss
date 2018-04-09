@@ -172,14 +172,14 @@
     margin: 20px 0px;
 
     iframe {
-      width: 60vw;
-      height: calc(60vw * 360 / 640);
+      width: 45vw;
+      height: calc(45vw * 360 / 640);
       margin-right: 20px;
     }
 
     .messages {
-      width: 30vw;
-      height: calc(60vw * 360 / 640);
+      width: 25vw;
+      height: calc(45vw * 360 / 640);
       background: #FFFFFF;
       overflow-y: scroll;
       overflow-x: hidden;
@@ -222,7 +222,7 @@
 
 
   .stream-information {
-    width: 60vw;
+    width: 45vw;
     margin-right: 20px;
 
     .title {
@@ -238,7 +238,7 @@
   }
 
   .search-button {
-    width: 30vw;
+    width: 25vw;
 
     .toggle-search {
       float: right;
@@ -254,8 +254,8 @@
 .user-search {
   opacity: 0;
   z-index: -1;
-  width: 30vw;
-  height: calc(60vw * 360 / 640);
+  width: 25vw;
+  height: calc(45vw * 360 / 640);
   position: absolute;
   border: 1px solid #99999950;
   background-color: #FFFFFF;
@@ -271,7 +271,7 @@
   }
 
   .search-results {
-    height: calc(60vw * 360 / 640 - 30px);
+    height: calc(45vw * 360 / 640 - 30px);
     overflow-y: scroll;
     overflow-x: hidden;
     display: flex;
