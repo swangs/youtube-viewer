@@ -26,4 +26,10 @@ class MessagesController < ApplicationController
 
     render json: messages, status: 200
   end
+
+  def search
+    stream = Video.find_by(video_id: params[:video_id])
+    searchResults = stream.messages.where("REPLACE(LOWER(author), ' ', '') LIKE ?", "%#{params[:query]}%")
+    render json: searchResults, status: 200
+  end
 end

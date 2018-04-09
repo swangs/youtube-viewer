@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20180407214546) do
   create_table "messages", force: :cascade do |t|
     t.string "message_id"
     t.string "author"
+    t.string "author_image"
     t.string "body"
     t.string "chat_id"
     t.datetime "created_at", null: false

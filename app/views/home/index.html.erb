@@ -63,12 +63,18 @@
           <% if current_video %>
             <div class="video">
               <iframe src="<%= 'https://www.youtube.com/embed/' + flash[:video_id] + '?autoplay=1'%>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-              <div class="messages">
-                <button onclick="toggleSearch()" type="button" class="search-button">
-                  <i class="fas fa-search"></i> Search by User
-                </button>
-                <div class="user-search">
+              <button class="toggle-search" onclick="toggleSearch()" type="button">
+                <i class="fas fa-search"></i> Search by User
+              </button>
+              <div class="user-search">
+                <div class="search-results">
                 </div>
+                <div class="search-input">
+                  <input id="searchQuery" class="search-query" onkeydown="submit(event)" type="text" value="">
+                  <button id="searchButton" class="search-button" onclick="search()" type="submit">Search</button>
+                </div>
+              </div>
+              <div class="messages">
               </div>
             </div>
             <p class="title"><%= current_video.title %></p>
@@ -90,8 +96,8 @@
     </div>
     <img src="${item.authorDetails.profileImageUrl}" alt="">
     <script type="text/javascript">
-    // ajax request and intervals to refresh chat
 
+    // ajax request and intervals to refresh chat
     function updateMessages(chat_id, nextPageToken = "none", first = true) {
       const messages = document.querySelector(".messages");
       $.ajax({
@@ -132,8 +138,35 @@
     function toggleSearch() {
       const searchWindow = document.querySelector(".user-search")
       searchWindow.classList.toggle("show");
-      console.log("testing");
+    }
 
+    function search() {
+      const query = document.getElementById("searchQuery");
+      const searchResults = document.querySelector(".search-results");
+      <% if current_video %>
+        const video_id = `<%= current_video.video_id %>`
+      <% end %>
+
+      $.ajax({
+        url: `/messages/search/${query.value.toLowerCase().replace(/\s+/g, '')}`,
+        method: "GET",
+        data: { video_id }
+      }).then(response => {
+        response.forEach((item) => {
+          searchResults.innerHTML = `
+          <div class="message-box">
+            <img class="chat-img" src="${item.author_image}"></img>
+            <p class="message"><span class="author">${item.author}</span>${item.body}</p>
+          </div>` + searchResults.innerHTML;
+        });
+      });
+      query.value = "";
+    }
+
+    function submit(event) {
+      if (event.keyCode === 13) {
+        document.getElementById("searchButton").click();
+      }
     }
 
     // top streams scrolling buttons

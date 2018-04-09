@@ -87,14 +87,12 @@
     position: absolute;
     z-index: 99;
     border: none;
-    outline: none;
     background-color: #00000099;
     color: #FFFFFF99;
     padding: 10px 10px 15px 10px;
     margin: 5px 5px;
     border-radius: 10px;
     font-size: 30px;
-    cursor: pointer;
 
     &:hover {
       background-color: #FFFFFF99;
@@ -176,31 +174,31 @@
       display: flex;
       flex-direction: column-reverse;
       border: 1px solid #99999950;
+    }
+  }
+}
 
-      .message-box {
-        display: flex;
-        flex-shrink: 0;
-        align-items: center;
-        justify-content: flex-start;
-        margin: 10px;
+.message-box {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 10px;
 
-        .chat-img {
-          width: 40px;
-          border-radius: 50px;
-          margin-right: 10px;
-        }
+  .chat-img {
+    width: 40px;
+    border-radius: 50px;
+    margin-right: 10px;
+  }
 
-        .message {
-          max-width: calc(100% - 50px);
-          font-size: 14px;
-          word-wrap: break-word;
+  .message {
+    max-width: calc(100% - 50px);
+    font-size: 14px;
+    word-wrap: break-word;
 
-          .author {
-            color: #999999;
-            margin-right: 10px;
-          }
-        }
-      }
+    .author {
+      color: #999999;
+      margin-right: 10px;
     }
   }
 }
@@ -225,27 +223,50 @@
   }
 }
 
-.search-button {
+.toggle-search {
   width: 150px;
   height: 30px;
   position: absolute;
   right: calc(5vw - 17px);
-  margin-top: 35px;
+  margin-top: calc(60vw * 360 / 640 + 10px);
   border-radius: 0;
   background-color: transparent;
-  outline: none;
 }
 
 .user-search {
-  z-index: 50;
   opacity: 0;
+  z-index: -1;
   width: 30vw;
   height: calc(60vw * 360 / 640);
+  margin-top: 1px;
   position: absolute;
+  right: calc(5vw - 17px);
   background-color: #FFFFFF;
-  transition: opacity .5s linear;
+  transition: .5s linear;
+
+  .search-results {
+    height: calc(60vw * 360 / 640 - 30px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  .search-input {
+    height: 30px;
+    display: flex;
+
+    .search-query {
+      width: 80%;
+      padding: 0px 5px;
+    }
+
+    .search-button {
+      width: 20%;
+      background-color: transparent;
+    }
+  }
 }
 
 .show {
   opacity: 1;
+  z-index: 50;
 }
