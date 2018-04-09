@@ -112,7 +112,7 @@
           setTimeout(function() {
             messages.innerHTML = `
             <div class="message-box">
-
+              <img class="chat-img" src="${item.authorDetails.profileImageUrl}"></img>
               <p class="message"><span class="author">${item.authorDetails.displayName}</span>${item.snippet.displayMessage}</p>
             </div>` + messages.innerHTML;
           }, timeout)
@@ -163,6 +163,7 @@
           response.forEach((item) => {
             searchResults.innerHTML = `
             <div class="message-box">
+              <img class="chat-img" src="${item.author_image}"></img>
               <p class="message"><span class="author">${item.author}</span>${item.body}</p>
             </div>` + searchResults.innerHTML;
           });
