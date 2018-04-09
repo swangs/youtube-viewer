@@ -81,7 +81,7 @@
               <div class="stream-information">
                 <p class="title"><%= current_video.title %></p>
                 <div class="stream-details">
-                  <p class="concurrent-viewers"><%= current_video.concurrent_viewers %> watching now</p>
+                  <p class="concurrent-viewers"><%= number_with_delimiter(current_video.concurrent_viewers, :delimiter => ',') %> watching now</p>
                   <p class="chats-per-second"></p>
                 </div>
               </div>
