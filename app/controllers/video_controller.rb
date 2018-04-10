@@ -1,7 +1,7 @@
 require 'google/apis/youtube_v3'
 require 'google/api_client/client_secrets'
 
-class HomeController < ApplicationController
+class VideoController < ApplicationController
   layout false
 
   def new_service
