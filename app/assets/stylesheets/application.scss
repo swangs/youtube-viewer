@@ -185,7 +185,7 @@
       overflow-x: hidden;
       display: flex;
       flex-direction: column-reverse;
-      border: 1px solid #99999950;
+      outline: 1px solid #99999950;
     }
   }
 }
@@ -257,7 +257,6 @@
   width: 25vw;
   height: calc(45vw * 360 / 640);
   position: absolute;
-  border: 1px solid #99999950;
   background-color: #FFFFFF;
   transition: .5s linear;
 
