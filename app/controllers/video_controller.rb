@@ -49,7 +49,10 @@ class VideoController < ApplicationController
       'snippet, liveStreamingDetails',
       id: params[:video_id]).to_json
     video_details = JSON.parse(video_details)
-    Video.set(video_details['items'][0])
+    
+    if video_details['items'][0]
+      Video.set(video_details['items'][0])
+    end
 
     redirect_to root_path
   end
