@@ -109,39 +109,46 @@
     // ajax request and intervals to refresh chat
     function updateMessages(chat_id, nextPageToken = "none", first = true) {
       const messages = document.querySelector(".messages");
-      $.ajax({
-        url: `/messages/${chat_id}`,
-        method: "GET",
-        data: { nextPageToken }
-      }).then(response => {
-        const chatRate = first ? 0 : Math.ceil(response.pollingIntervalMillis / (response.items.length))
-        let timeout = chatRate;
-        response.items.forEach((item) => {
+      if (chat_id) {
+        $.ajax({
+          url: `/messages/${chat_id}`,
+          method: "GET",
+          data: { nextPageToken }
+        }).then(response => {
+          const chatRate = first ? 0 : Math.ceil(response.pollingIntervalMillis / (response.items.length))
+          let timeout = chatRate;
+          response.items.forEach((item) => {
+            setTimeout(function() {
+              messages.innerHTML = `
+              <div class="message-box">
+                <img class="chat-img" src="${item.authorDetails.profileImageUrl}"></img>
+                <p class="message"><span class="author">${item.authorDetails.displayName}</span>${item.snippet.displayMessage}</p>
+              </div>` + messages.innerHTML;
+            }, timeout)
+            timeout += chatRate;
+          })
+
           setTimeout(function() {
-            messages.innerHTML = `
-            <div class="message-box">
-              <img class="chat-img" src="${item.authorDetails.profileImageUrl}"></img>
-              <p class="message"><span class="author">${item.authorDetails.displayName}</span>${item.snippet.displayMessage}</p>
-            </div>` + messages.innerHTML;
-          }, timeout)
-          timeout += chatRate;
-        })
+            updateMessages(chat_id, response.nextPageToken, false)
+          }, response.pollingIntervalMillis);
 
-        setTimeout(function() {
-          updateMessages(chat_id, response.nextPageToken, false)
-        }, response.pollingIntervalMillis);
-
-        const chatsPerSecond = first ? "0.0" : (response.items.length / response.pollingIntervalMillis * 1000).toFixed(1);
-        const chatsPerSecondElement = document.querySelector('.chats-per-second');
-        chatsPerSecondElement.innerHTML = ` ${chatsPerSecond} chats per second`
-        if (chatsPerSecond > 3) {
-          chatsPerSecondElement.style.color = "#FF0000"
-        } else if (chatsPerSecond > 1) {
-          chatsPerSecondElement.style.color = "#FF8D0D"
-        } else {
-          chatsPerSecondElement.style.color = "#999999"
-        }
-      });
+          const chatsPerSecond = first ? "0.0" : (response.items.length / response.pollingIntervalMillis * 1000).toFixed(1);
+          const chatsPerSecondElement = document.querySelector('.chats-per-second');
+          chatsPerSecondElement.innerHTML = ` ${chatsPerSecond} chats per second`
+          if (chatsPerSecond > 3) {
+            chatsPerSecondElement.style.color = "#FF0000"
+          } else if (chatsPerSecond > 1) {
+            chatsPerSecondElement.style.color = "#FF8D0D"
+          } else {
+            chatsPerSecondElement.style.color = "#999999"
+          }
+        });
+      } else {
+        messages.innerHTML = `
+        <div class="message-box">
+          <p class="message" style="margin:auto">Chat is disabled for this live stream.</p>
+        </div>`
+      }
     }
 
     <% if current_video %>
@@ -184,14 +191,14 @@
             searchResults.innerHTML = `
             <div class="message-box">
               <img class="chat-img" src="${item.author_image}"></img>
-              <p class="message"><span class="author">${item.author}</span>${item.body}</p>
+              <p class="message" ><span class="author">${item.author}</span>${item.body}</p>
             </div>` + searchResults.innerHTML;
           });
         },
         error => {
           searchResults.innerHTML = `
           <div class="message-box">
-            <p style="color:red">${error.responseJSON}</p>
+            <p style="color:red; margin:auto">${error.responseJSON}</p>
           </div>`;
         });
       query.value = "";
