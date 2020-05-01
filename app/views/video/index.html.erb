@@ -107,7 +107,7 @@
     <script type="text/javascript">
 
     // ajax request and intervals to refresh chat
-    function updateMessages(chat_id, nextPageToken = "none", first = true) {
+    function updateMessages(chat_id, nextPageToken, first = true) {
       const messages = document.querySelector(".messages");
       if (chat_id) {
         $.ajax({
